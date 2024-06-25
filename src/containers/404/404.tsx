@@ -1,4 +1,3 @@
-import React from "react";
 import localeTexts from "../../common/locales/en-us/index";
 import parse from "html-react-parser";
 
@@ -12,8 +11,9 @@ const PageNotFound = () => {
           <a
             target="_blank"
             rel="noreferrer"
-            href={localeTexts[404].button.url}>
-            {localeTexts[404].button.text}
+            href="https://www.contentstack.com/docs/developers/developer-hub/about-ui-locations/"
+          >
+            {localeTexts[404].button.learnMore}
           </a>
         </div>
       </div>

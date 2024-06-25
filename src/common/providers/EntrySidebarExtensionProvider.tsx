@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { isEmpty, isNull } from "lodash";
-
+import { useEffect, useState } from "react";
 import { useAppLocation } from "../hooks/useAppLocation";
+import { isEmpty, isNull } from "lodash";
 import { EntrySidebarExtensionContext } from "../contexts/entrySidebarExtensionContext";
-import { ChildProp } from "../types/types";
 
-export const EntrySidebarExtensionProvider = ({ children }: ChildProp) => {
-  const [entryData, setEntry] = useState({});
+export const EntrySidebarExtensionProvider = ({ children }: any) => {
+  const [entryData, setEntry] = useState<{ [key: string]: any }>({});
   const [loading, setLoading] = useState<boolean>(false);
   const { location } = useAppLocation();
 
@@ -14,10 +12,8 @@ export const EntrySidebarExtensionProvider = ({ children }: ChildProp) => {
     (async () => {
       if (!isEmpty(entryData) || isNull(location)) return;
       setLoading(true);
-      if ('entry' in location) {
-        const entry: { [key: string]: unknown } | undefined = location?.entry?.getData();
-        setEntry(entry);
-      }
+      const entry: { [key: string]: any } = await location.entry.getData();
+      setEntry(entry);
       setLoading(false);
     })();
   }, [entryData, location, setLoading, setEntry]);

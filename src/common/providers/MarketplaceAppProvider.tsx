@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
-import ContentstackAppSDK from "@contentstack/app-sdk";
-import UiLocation from "@contentstack/app-sdk/dist/src/uiLocation";
-import { isNull } from "lodash";
 
-import { KeyValueObj } from "../types/types";
 import { AppFailed } from "../../components/AppFailed";
+import ContentstackAppSDK from "@contentstack/app-sdk";
+import Extension from "@contentstack/app-sdk/dist/src/extension";
+import { KeyValueObj } from "../types/types";
 import { MarketplaceAppContext } from "../contexts/marketplaceContext";
+import { isNull } from "lodash";
+import { useLocation } from "react-router-dom";
+
+const MARKETPLACE_APP_NAME: string = process.env
+  .REACT_APP_MARKETPLACE_APP_NAME as string;
 
 type ProviderProps = {
+  excludeRoutes?: string[];
   children?: React.ReactNode;
 };
 
@@ -15,25 +20,25 @@ type ProviderProps = {
  * Marketplace App Provider
  * @param children: React.ReactNode
  */
-export const MarketplaceAppProvider: React.FC<ProviderProps> = ({ children }) => {
+export const MarketplaceAppProvider: React.FC<ProviderProps> = ({
+  excludeRoutes,
+  children,
+}) => {
+  const location = useLocation();
+  const [isExcludePath, setIsExcludePath] = useState<boolean>(false);
   const [failed, setFailed] = useState<boolean>(false);
-  const [appSdk, setAppSdk] = useState<UiLocation | null>(null);
+  const [appSdk, setAppSdk] = useState<Extension | null>(null);
   const [appConfig, setConfig] = useState<KeyValueObj | null>(null);
 
   // Initialize the SDK and track analytics event
   useEffect(() => {
+    if (excludeRoutes && excludeRoutes.includes(location.pathname)) {
+      setIsExcludePath(true);
+      return;
+    }
     ContentstackAppSDK.init()
       .then(async (appSdk) => {
         setAppSdk(appSdk);
-        //updated Height of the Custom Field Iframe.
-        appSdk.location.DashboardWidget?.frame?.disableAutoResizing();
-        await appSdk.location.CustomField?.frame?.updateHeight?.(450);
-        //updated Height and Width of the Field Modifier Iframe.
-        appSdk.location.FieldModifierLocation?.frame?.disableAutoResizing();
-        await appSdk.location.FieldModifierLocation?.frame?.updateDimension({ height: 380, width: 520 });
-        // //updated Height of the Stack Dashboard Iframe.
-        appSdk.location.DashboardWidget?.frame?.disableAutoResizing();
-        await appSdk.location.DashboardWidget?.frame?.updateHeight?.(722);
         const appConfig = await appSdk.getConfig();
         setConfig(appConfig);
       })
@@ -44,7 +49,7 @@ export const MarketplaceAppProvider: React.FC<ProviderProps> = ({ children }) =>
 
   // wait until the SDK is initialized. This will ensure the values are set
   // correctly for appSdk.
-  if (!failed && isNull(appSdk)) {
+  if (!isExcludePath && !failed && isNull(appSdk)) {
     return <div>Loading...</div>;
   }
 
@@ -52,5 +57,9 @@ export const MarketplaceAppProvider: React.FC<ProviderProps> = ({ children }) =>
     return <AppFailed />;
   }
 
-  return <MarketplaceAppContext.Provider value={{ appSdk, appConfig }}>{children}</MarketplaceAppContext.Provider>;
+  return (
+    <MarketplaceAppContext.Provider value={{ appSdk, appConfig }}>
+      {children}
+    </MarketplaceAppContext.Provider>
+  );
 };

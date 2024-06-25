@@ -3,73 +3,79 @@ const localeTexts = {
     title: "404: Not Found",
     body: "The link you tried to access doesn't seem to exist. <br />Please verify and enter the correct URL.",
     button: {
-      text: "Learn More",
-      url: "https://www.contentstack.com/docs/developers/developer-hub/about-ui-locations/",
+      learnMore: "Learn more",
     },
   },
   AssetSidebarWidget: {
     title: "Asset Sidebar Widget",
-    body: "This is the iframe that contains your Asset Sidebar Widget.",
+    body: "This is the location that contains your Asset Sidebar Widget. <br />Create your new app now!",
     button: {
-      text: "Learn More",
-      url: "https://www.contentstack.com/docs/developers/developer-hub/asset-sidebar-location/",
+      learnMore: "Learn more",
     },
   },
   ConfigScreen: {
     title: "App Configuration",
-    body: "This is the location that contains your app configuration.",
+    body: "This is the location that contains your App Configuration. <br />Create your new app now!",
     button: {
-      text: "Learn More",
-      url: "https://www.contentstack.com/docs/developers/developer-hub/app-config-location/",
+      learnMore: "Learn more",
+    },
+    page: {
+      label: "Title",
+      placeholder: "Enter title of your choice .",
+      instruction:
+        "You can enter the page count as numbers eg. 10, 15, 20, etc",
+      help: "Make sure you enter 10 or more (15, 20, etc.) as the page count.",
     },
   },
   CustomField: {
     title: "Custom Field",
-    body: "This is the iframe that contains your Custom Field.",
+    body: "This is the location that contains your Custom Field. <br />Create your new app now!",
     button: {
-      text: "Learn More",
-      url: "https://www.contentstack.com/docs/developers/developer-hub/custom-field-location/",
+      learnMore: "Learn more",
+    },
+    productModal: {
+      header: "Add Product",
+      cancelButton: "Cancel",
+      confirmButton: "Add",
+      placeholder: "Enter Product",
     },
   },
   DashboardWidget: {
     title: "Dashboard Widget",
-    body: "This is the location that contains your Dashboard Widget.",
+    body: "This is the location that contains your Dashboard Widget. <br />Create your new app now!",
     button: {
-      text: "Learn More",
-      url: "https://www.contentstack.com/docs/developers/developer-hub/dashboard-location/",
+      learnMore: "Learn more",
     },
   },
   SidebarWidget: {
     title: "Sidebar Widget",
-    body: "This is the iframe that contains your Sidebar Widget.",
+    body: "This is the location that contains your Entry Sidebar Widget. <br />Create your new app now!",
+    productsTitle: "Products",
+    configurationTitle: "Stored Configuration",
     button: {
-      text: "Learn More",
-      url: "https://www.contentstack.com/docs/developers/developer-hub/sidebar-location/",
+      learnMore: "Learn more",
     },
+    dropdownLabels: {
+      products: "Products",
+      fields: "Fields",
+    },
+    altTexts: {
+      product: "Product",
+    },
+    noProducts: "No Products Added",
   },
   FullPage: {
     title: "Full Page App",
-    body: "This is the location that contains your Full Page App.",
+    body: "This is the location that contains your Full Page app. <br />Create your new app now!",
     button: {
-      text: "Learn More",
-      url: "https://www.contentstack.com/docs/developers/developer-hub/full-page-location/",
+      learnMore: "Learn more",
     },
   },
   FieldModifier: {
     title: "Field Modifier App",
-    body: "This is the location that contains your Field Modifier app.",
+    body: "This is the location that contains your Field Modifier app. <br />Create your new app now!",
     button: {
-      text: "Learn More",
-      url: "https://www.contentstack.com/docs/developers/developer-hub/field-modifier-location/",
-    },
-  },
-  AppFailed: {
-    Message1: "The App was loaded outside Contentstack Dashboard.",
-    Message2: "Please navigate to Your Stack in Contentstack where you just installed the Application ",
-    body: "For Assistance, please reach out to us at support@contentstack.com",
-    button: {
-      text: "Learn More",
-      url: "https://www.contentstack.com/docs/developers/developer-hub/marketplace-app-boilerplate/",
+      learnMore: "Learn more",
     },
   },
 };

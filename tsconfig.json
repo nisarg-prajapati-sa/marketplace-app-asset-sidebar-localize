@@ -20,6 +20,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "e2e"],
-  "exclude": ["node_modules", "dist", " **/*.test.tsx"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "snippets"]
 }

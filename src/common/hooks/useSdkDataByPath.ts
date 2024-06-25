@@ -11,7 +11,10 @@ import { get } from "lodash";
  * const contentTypeUuid = useSdkDataByPath('location.SidebarWidget.entry.content_type.uid', '')
  * const stackKey =  useSdkDataByPath('stack._data.api_key', '');
  */
-export const useSdkDataByPath = (path: string, defaultValue: unknown): unknown => {
+export const useSdkDataByPath = (
+  path: string,
+  defaultValue: unknown
+): unknown => {
   const appSdk = useAppSdk();
   return get(appSdk, path, defaultValue);
 };

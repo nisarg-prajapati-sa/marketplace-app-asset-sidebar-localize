@@ -1,8 +1,8 @@
 import React from "react";
 
 export type InstallationData = {
-  configuration: { [key: string]: unknown };
-  serverConfiguration: { [key: string]: unknown };
+  configuration: { [key: string]: any };
+  serverConfiguration: { [key: string]: any };
 };
 
 export type AppConfigurationExtensionContextType = {
@@ -17,6 +17,6 @@ export const AppConfigurationExtensionContext =
       configuration: {},
       serverConfiguration: {},
     },
-    setInstallationData: () => ({}),
+    setInstallationData: () => {},
     loading: false,
   });

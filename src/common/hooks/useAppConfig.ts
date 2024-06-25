@@ -1,4 +1,7 @@
-import { MarketplaceAppContext, MarketplaceAppContextType } from "../contexts/marketplaceContext";
+import {
+  MarketplaceAppContext,
+  MarketplaceAppContextType,
+} from "../contexts/marketplaceContext";
 import { useContext } from "react";
 
 /**
@@ -9,7 +12,9 @@ import { useContext } from "react";
  * const appConfig = useAppConfig();
  */
 export const useAppConfig = () => {
-  const { appConfig } = useContext(MarketplaceAppContext) as MarketplaceAppContextType;
+  const { appConfig } = useContext(
+    MarketplaceAppContext
+  ) as MarketplaceAppContextType;
 
   return appConfig;
 };

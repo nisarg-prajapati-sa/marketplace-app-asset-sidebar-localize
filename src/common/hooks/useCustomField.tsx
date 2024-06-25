@@ -1,5 +1,8 @@
 import { useContext } from "react";
-import { CustomFieldExtensionContext, CustomFieldExtensionContextType } from "../contexts/customFieldExtensionContext";
+import {
+  CustomFieldExtensionContext,
+  CustomFieldExtensionContextType,
+} from "../contexts/customFieldExtensionContext";
 
 /**
  * Getter and setter hook for custom field data

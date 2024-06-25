@@ -1,11 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { isEmpty } from "lodash";
-
+import { useCallback, useEffect, useState } from "react";
 import { useAppLocation } from "../hooks/useAppLocation";
+import { isEmpty } from "lodash";
 import { CustomFieldExtensionContext } from "../contexts/customFieldExtensionContext";
-import { ChildProp } from "../types/types";
 
-export const CustomFieldExtensionProvider = ({ children }: ChildProp) => {
+export const CustomFieldExtensionProvider = ({ children }: any) => {
   const [customField, setCustomField] = useState<unknown>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const { location } = useAppLocation();
@@ -13,9 +11,9 @@ export const CustomFieldExtensionProvider = ({ children }: ChildProp) => {
   useEffect(() => {
     (async () => {
       // check if the data was loaded earlier or not
-      if (isEmpty(customField) && location && 'field' in location) {
+      if (isEmpty(customField)) {
         setLoading(true);
-        const fieldData = await location?.field.getData();
+        let fieldData = await location.field.getData();
         setCustomField(fieldData);
         setLoading(false);
       }
@@ -25,9 +23,7 @@ export const CustomFieldExtensionProvider = ({ children }: ChildProp) => {
   const setFieldData = useCallback(
     async (data: unknown) => {
       setLoading(true);
-      if (location && 'field' in location) {
-        location?.field.setData(data);
-      }
+      await location.field.setData(data);
       setCustomField(data);
       setLoading(false);
     },
@@ -35,7 +31,9 @@ export const CustomFieldExtensionProvider = ({ children }: ChildProp) => {
   );
 
   return (
-    <CustomFieldExtensionContext.Provider value={{ customField, setFieldData, loading }}>
+    <CustomFieldExtensionContext.Provider
+      value={{ customField, setFieldData, loading }}
+    >
       {children}
     </CustomFieldExtensionContext.Provider>
   );

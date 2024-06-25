@@ -1,7 +1,7 @@
 import React from "react";
 
 export type EntrySidebarExtensionContextType = {
-  entryData: { [key: string]: unknown };
+  entryData: { [key: string]: any };
   loading: boolean;
 };
 

@@ -9,6 +9,6 @@ export type CustomFieldExtensionContextType = {
 export const CustomFieldExtensionContext =
   React.createContext<CustomFieldExtensionContextType>({
     customField: null,
-    setFieldData: () => ({}),
+    setFieldData: () => {},
     loading: false,
   });
